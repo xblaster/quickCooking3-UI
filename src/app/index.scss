@@ -17,6 +17,7 @@ html {
 
 .thumbnail {
   height: 200px;
+  overflow: none;
 
   img.pull-right {
     width: 50px;
@@ -46,7 +47,7 @@ section.jumbotron {
 
   md-card {
     width: 30%;
-
+    overflow: hidden;
     img.pull-right {
       float: right;
       width: 50px;

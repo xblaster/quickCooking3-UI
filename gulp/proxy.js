@@ -27,6 +27,10 @@ var proxy = httpProxy.createProxyServer({
   target: proxyTarget
 });
 
+var proxyElastic = httpProxy.createProxyServer({
+  target: 'http://localhost:9200'
+});
+
 proxy.on('error', function(error, req, res) {
   res.writeHead(500, {
     'Content-Type': 'text/plain'
@@ -48,11 +52,27 @@ function proxyMiddleware(req, res, next) {
    * for your needs. If you can, you could also check on a context in the url which
    * may be more reliable but can't be generic.
    */
-  if (/\.(html|css|js|png|jpg|jpeg|gif|ico|xml|rss|txt|eot|svg|ttf|woff|cur)(\?((r|v|rel|rev)=[\-\.\w]*)?)?$/.test(req.url)) {
-    next();
+  // if (/\.(html|css|js|png|jpg|jpeg|gif|ico|xml|rss|txt|eot|svg|ttf|woff|cur)(\?((r|v|rel|rev)=[\-\.\w]*)?)?$/.test(req.url)) {
+  //   console.log('static');
+  //   next();
+  // } else {
+
+  //   if (/recipes/.test(req.url)) {
+  //     console.log('elastic');
+  //     proxyElastic.web(req, res);
+  //   } else {
+  //     console.log('web');
+  //     proxy.web(req, res);  
+  //   }
+
+    
+  // }
+  if (/recipes/.test(req.url)) {
+       proxyElastic.web(req, res);
   } else {
-    proxy.web(req, res);
+      next();  
   }
+  
 }
 
 /*
@@ -61,5 +81,5 @@ function proxyMiddleware(req, res, next) {
  * The first line activate if and the second one ignored it
  */
 
-//module.exports = [proxyMiddleware];
-module.exports = [];
+module.exports = [proxyMiddleware];
+//module.exports = [];

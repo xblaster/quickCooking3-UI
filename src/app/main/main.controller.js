@@ -5,14 +5,18 @@ class MainCtrl {
   constructor ($scope) {
 
      var client = elasticsearch.Client({
-      host: 'localhost:9200'
+      host: 'localhost:3000'
       });
 
      client.search({
       index: 'recipes',
       q: 'content:a'
     }, function (error, response) {
-      console.log(response);
+      console.log(response.hits.hits);
+      $scope.$apply(function() {
+        $scope.awesomeThings = response.hits.hits;  
+      })
+      
     });
 
     // $scope.awesomeThings = [
@@ -77,9 +81,10 @@ class MainCtrl {
     //     'logo': 'traceur.png'
     //   }
     // ];
+    /*
     $scope.awesomeThings.forEach(function(awesomeThing) {
       awesomeThing.rank = Math.random();
-    });
+    });*/
   }
 }
 
