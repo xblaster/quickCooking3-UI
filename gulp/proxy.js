@@ -17,6 +17,8 @@
 
 var httpProxy = require('http-proxy');
 var chalk = require('chalk');
+var elasticsearch = require('elasticsearch');
+
 
 /*
  * Location of your backend server
@@ -38,6 +40,65 @@ proxy.on('error', function(error, req, res) {
 
   console.error(chalk.red('[Proxy]'), error);
 });
+
+
+
+
+
+
+  // this.
+
+
+function sendImage(req, res, next) {
+  
+    var client = elasticsearch.Client({
+        host: 'localhost:9200'
+    });
+    var query = req._parsedUrl.query;
+    console.log(req._parsedUrl.query);
+
+    client.search({
+        index: 'pictures', 
+        q: 'checksum:' + query
+    }, function(error, response) {
+        if (response.hits.hits.length !== 0) {
+
+            var b = new Buffer(response.hits.hits[0]._source.content, 'base64');
+            res.writeHead(200, { 'Content-Type': 'image/jpeg'});
+            res.write(b);
+            res.end();
+        } else {
+
+            res.write("none");
+            res.end();
+        }
+    });
+
+
+
+
+}
+
+
+  //       //bad but need to investigate ;)
+
+  //       // $scope.loadImg = (recipe) => {
+  //       //     this.client.search({
+  //       //         index: 'pictures',
+  //       //         q: 'checksum:' + recipe._source.checksum
+  //       //     }, (error, response) => {
+  //       //         if (response.hits.length !== 0) {
+  //       //             $scope.$apply(() => {
+  //       //                 console.log(response.hits[0]);
+  //       //                 recipe.img = response.hits.hits[0]._source.content;
+  //       //             });
+  //       //         }
+  //       //         //recipe.base64Img = 
+
+
+
+
+
 
 /*
  * The proxy middleware is an Express middleware added to BrowserSync to
@@ -67,6 +128,12 @@ function proxyMiddleware(req, res, next) {
 
     
   // }
+
+
+ if(/pictures/.test(req.url)) {
+    return sendImage(req, res, next);
+ }
+
   if (/recipes/.test(req.url)) {
        proxyElastic.web(req, res);
   } else {

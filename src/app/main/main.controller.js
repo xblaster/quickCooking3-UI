@@ -1,93 +1,67 @@
 'use strict';
 /*jshint esnext: true */
-
+import MainService from './main.service';
 class MainCtrl {
-  constructor ($scope) {
+    constructor($scope, MainService) {
+        //$scope.loadImg
+        this.client = elasticsearch.Client({
+            host: 'localhost:3000'
+        });
 
-     var client = elasticsearch.Client({
-      host: 'localhost:3000'
-      });
 
-     client.search({
-      index: 'recipes',
-      q: 'content:a'
-    }, function (error, response) {
-      console.log(response.hits.hits);
-      $scope.$apply(function() {
-        $scope.awesomeThings = response.hits.hits;  
-      })
-      
-    });
+        
 
-    // $scope.awesomeThings = [
-    //   {
-    //     'title': 'AngularJS',
-    //     'url': 'https://angularjs.org/',
-    //     'description': 'HTML enhanced for web apps!',
-    //     'logo': 'angular.png'
-    //   },
-    //   {
-    //     'title': 'BrowserSync',
-    //     'url': 'http://browsersync.io/',
-    //     'description': 'Time-saving synchronised browser testing.',
-    //     'logo': 'browsersync.png'
-    //   },
-    //   {
-    //     'title': 'GulpJS',
-    //     'url': 'http://gulpjs.com/',
-    //     'description': 'The streaming build system.',
-    //     'logo': 'gulp.png'
-    //   },
-    //   {
-    //     'title': 'Jasmine',
-    //     'url': 'http://jasmine.github.io/',
-    //     'description': 'Behavior-Driven JavaScript.',
-    //     'logo': 'jasmine.png'
-    //   },
-    //   {
-    //     'title': 'Karma',
-    //     'url': 'http://karma-runner.github.io/',
-    //     'description': 'Spectacular Test Runner for JavaScript.',
-    //     'logo': 'karma.png'
-    //   },
-    //   {
-    //     'title': 'Protractor',
-    //     'url': 'https://github.com/angular/protractor',
-    //     'description': 'End to end test framework for AngularJS applications built on top of WebDriverJS.',
-    //     'logo': 'protractor.png'
-    //   },
-    //   {
-    //     'title': 'jQuery',
-    //     'url': 'http://jquery.com/',
-    //     'description': 'jQuery is a fast, small, and feature-rich JavaScript library.',
-    //     'logo': 'jquery.jpg'
-    //   },
-    //   {
-    //     'title': 'Angular Material Design',
-    //     'url': 'https://material.angularjs.org/#/',
-    //     'description': 'The Angular reference implementation of the Google\'s Material Design specification.',
-    //     'logo': 'angular-material.png'
-    //   },
-    //   {
-    //     'title': 'Sass (Node)',
-    //     'url': 'https://github.com/sass/node-sass',
-    //     'description': 'Node.js binding to libsass, the C version of the popular stylesheet preprocessor, Sass.',
-    //     'logo': 'node-sass.png'
-    //   },
-    //   {
-    //     'title': 'ES6 (Traceur)',
-    //     'url': 'https://github.com/google/traceur-compiler',
-    //     'description': 'A JavaScript.next-to-JavaScript-of-today compiler that allows you to use features from the future today.',
-    //     'logo': 'traceur.png'
-    //   }
-    // ];
-    /*
-    $scope.awesomeThings.forEach(function(awesomeThing) {
-      awesomeThing.rank = Math.random();
-    });*/
-  }
+
+
+        //bad but need to investigate ;)
+
+        // $scope.loadImg = (recipe) => {
+        //     this.client.search({
+        //         index: 'pictures',
+        //         q: 'checksum:' + recipe._source.checksum
+        //     }, (error, response) => {
+        //         if (response.hits.length !== 0) {
+        //             $scope.$apply(() => {
+        //                 console.log(response.hits[0]);
+        //                 recipe.img = response.hits.hits[0]._source.content;
+        //             });
+        //         }
+        //         //recipe.base64Img = 
+        //     });
+        // }
+
+
+        $scope.search = (query) => {
+            this.client.search({
+                index: 'recipes',
+                q: 'content:' + query
+            }, (error, response) => {
+                //console.log(response.hits.hits);
+                $scope.$apply(() => {
+                    $scope.awesomeThings = response.hits.hits;
+                });
+            });
+        }
+
+        $scope.getStyleForCaption = (caption) => {
+            var styles = {
+                'background-color': '#eee',
+                'background-image':  'url(/pictures?'+caption._source.checksum+')',
+                'background-size': "contain"
+            };
+
+
+            console.log(styles);
+            return styles;
+        };
+
+        $scope.search('a');
+
+    }
+
+
+
 }
-
-MainCtrl.$inject = ['$scope'];
-
-export default MainCtrl;
+MainCtrl.$inject = ['$scope', 'MainService'];
+export
+default MainCtrl;
