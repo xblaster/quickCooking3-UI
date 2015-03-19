@@ -50,6 +50,13 @@ class MainCtrl {
                 'background-size': "contain"
             };
 
+            if (caption.selected) {
+                 styles['position'] = 'fixed';
+                
+                 styles['top']: 0;
+                 styles['right']: 0;
+            }
+
 
             console.log(styles);
             return styles;

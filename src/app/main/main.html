@@ -10,15 +10,13 @@
   </div>
 </section>
 <div class="techs" layout-align="center">
-  <md-card ng-repeat="awesomeThing in awesomeThings | orderBy:'rank'">
-  <div class="thumbnail">
+  <md-card ng-repeat="awesomeThing in awesomeThings | orderBy:'rank'" ng-click="awesomeThing.selected= true" >
+  <div class="thumbnail" ng-style="getStyleForCaption(awesomeThing)">
     <img class="pull-right" ng-src="assets/images/{{awesomeThing.logo}}" alt="{{awesomeThing.title}}">
-    <div class="caption" ng-style="getStyleForCaption(awesomeThing)">
-      <h3>{{awesomeThing._id}} </h3>
-      {{awesomeThing._source.checksum}}
+    <div class="caption">
+      
       <!-- <img ng-if="awesomeThing.img" alt="Embedded Image" src="data:image/png;base64,{{awesomeThing.img}}"/> -->
-      <p>{{awesomeThing._source.content}}</p>
-      <p><a ng-href="{{awesomeThing.url}}">{{awesomeThing.url}}</a></p>
+      
     </div>
   </div>
   </md-card>
