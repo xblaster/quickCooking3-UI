@@ -32,3 +32,12 @@
 .navbar-text {
   margin-left: 15px;
 }
+
+.recipe-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.recipe {
+    width: 50%;
+}

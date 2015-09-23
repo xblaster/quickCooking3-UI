@@ -1,11 +1,11 @@
 'use strict';
 
 angular.module('quickCooking3UiApp')
-  .controller('MainCtrl', function ($scope, $http) {
+  .controller('MainCtrl', function ($scope, $http, recipes) {
     $scope.awesomeThings = [];
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
+    recipes.search().success(function(result) {
+    	$scope.recipes = result;
     });
 
   });

@@ -1,21 +1,16 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
-<header class="hero-unit" id="banner">
-  <div class="container">
-    <h1>'Allo, 'Allo!</h1>
-    <p class="lead">Kick-start your next web app with Angular Fullstack</p>
-    <img src="assets/images/yeoman.png" alt="I'm Yeoman">
-  </div>
-</header>
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}</a></li>
-      </ul>
-    </div>
+  <div class="recipe-container">
+        <div ng-repeat="recipe in recipes" class="recipe">
+          <h1>{{recipe._id}}</h1>  
+          <h2>{{recipe._source.checksum}}</h2>  
+          <img ng-src="/api/searchs/images/{{recipe._source.checksum}}?quality=m"/>
+          <!-- {{recipe._source.content}}
+          {{recipe}} -->
+        
+        </div>
   </div>
 </div>
 
