@@ -2,11 +2,19 @@
 
 
 <div class="container">
+
+  <div  class="row">
+    <form ng-submit="search(searchString)">
+      <input type="text" ng-model="searchString"></input>
+      <input  class="btn" type="submit">Search</input>
+    </form>
+  </div>
+
   <div class="recipe-container">
-        <div ng-repeat="recipe in recipes" class="recipe">
-          <h1>{{recipe._id}}</h1>  
+        <div ng-repeat="recipe in recipes track by $index" class="recipe">
+<!--           <h1>{{recipe._id}}</h1>  
           <h2>{{recipe._source.checksum}}</h2>  
-          <img ng-src="/api/searchs/images/{{recipe._source.checksum}}?quality=m"/>
+ -->          <img ng-src="/api/searchs/images/{{recipe._source.checksum}}?quality=l"/>
           <!-- {{recipe._source.content}}
           {{recipe}} -->
         

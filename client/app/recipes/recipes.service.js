@@ -2,8 +2,8 @@
 
 angular.module('quickCooking3UiApp')
     .service('recipes', function($http) {
-        function search() {
-            return $http.get('/api/searchs');
+        function search(text) {
+            return $http.get('/api/searchs', {params: { text: text}});
         }
 
         return {

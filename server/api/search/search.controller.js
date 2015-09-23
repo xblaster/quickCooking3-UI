@@ -14,8 +14,8 @@ exports.index = function(req, res) {
     console.log("launching searches");
 
     var client = new elasticsearch.Client({
-        host: host
-        //log: 'trace'
+        host: host,
+        log: 'trace'
     });
 
 
@@ -27,9 +27,14 @@ exports.index = function(req, res) {
         type: 'recipe',
         body: {
             query: {
-                match: {
-                    content: 'e'
+                // match: {
+                //     content: 'e'
+                // }
+                // 
+                 "fuzzy_like_this" : {
+                    "like_text" : req.query.text,
                 }
+
             }
         }
     }).then(function(resp) {
