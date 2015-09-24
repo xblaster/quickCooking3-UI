@@ -2,10 +2,10 @@
 
 angular.module('quickCooking3UiApp')
   .controller('NavbarCtrl', function ($scope, $location) {
-    $scope.menu = [{
+    /*$scope.menu = [{
       'title': 'Home',
       'link': '/'
-    }];
+    }];*/
 
     $scope.isCollapsed = true;
 

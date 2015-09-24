@@ -1,31 +1,47 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
-
-
 <div class="container">
-
   <div  class="row">
     <form ng-submit="search(searchString)">
-      <input type="text" ng-model="searchString"></input>
-      <input  class="btn" type="submit">Search</input>
-    </form>
-  </div>
-
-  <div class="recipe-container">
-        <div ng-repeat="recipe in recipes track by $index" class="recipe">
-<!--           <h1>{{recipe._id}}</h1>  
-          <h2>{{recipe._source.checksum}}</h2>  
- -->          <img ng-src="/api/searchs/images/{{recipe._source.checksum}}?quality=l"/>
-          <!-- {{recipe._source.content}}
-          {{recipe}} -->
-        
+      
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Pommes poires" ng-model="searchString">
+        <span class="input-group-btn">
+          <button class="btn btn-primary" type="submit">Recherche </button>
+        </span>
         </div>
-  </div>
-</div>
+      </form>
 
-<footer class="footer">
-  <div class="container">
-      <p>Angular Fullstack v2.1.1 |
-        <a href="https://twitter.com/tyhenkel">@tyhenkel</a> |
-         <a href="https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open">Issues</a></p>
+    </div>
+    <div class="recipe-container row">
+      <div ng-repeat="recipe in recipes track by $index" class="recipe circle-anim" ng-click="open(recipe)">
+        <div class="card" ng-style="getStyleFor(recipe)">
+          <div class="bigdetails" ng-style="getBigDetailsFor(recipe)"></div>
+        </div>
+        <!--           <h1>{{recipe._id}}</h1>
+        <h2>{{recipe._source.checksum}}</h2>
+        -->          <!-- <img ng-src="/api/searchs/images/{{recipe._source.checksum}}?quality=l"/> -->
+        
+        <!-- {{recipe._source.content}}
+        {{recipe}} -->
+        
+
+       
+
+      </div>
+       <div class="card" ng-if="!searchString">
+          <div class="jumbotron">
+            <p>Que souhaitez vous rechercher aujourd'hui ? :)
+            </p></div>
+        </div>
+    </div>
   </div>
-</footer>
+
+
+
+  <footer class="footer">
+    <div class="container">
+      <p>Quick cooking v3.0 |
+        <a href="https://github.com/xblaster">@xblaster</a> |
+        
+      </div>
+    </footer>

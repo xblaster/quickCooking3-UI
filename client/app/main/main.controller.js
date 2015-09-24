@@ -8,6 +8,29 @@ angular.module('quickCooking3UiApp')
 		$location.search("queryString="+queryString) ;
     }
 
+    $scope.getStyleFor = function(recipe) {
+    	var style= {
+    		  //'background': 'url(/api/searchs/images/'+recipe._source.checksum+'?quality=l) no-repeat center fixed',
+    		  'background': 'white url(/api/searchs/images/'+recipe._source.checksum+'?quality=p) no-repeat center',
+  			  '-webkit-background-size': 'contain',
+  				'background-size': 'contain',
+  				'min-height': '30em'
+    	};
+
+    	return style;
+    }
+
+    $scope.getBigDetailsFor = function(recipe) {
+    	var style= $scope.getStyleFor(recipe);
+    	style['background'] = 'url(/api/searchs/images/'+recipe._source.checksum+'?quality=l) no-repeat center';
+
+    	return style;
+    }
+
+    $scope.open = function(recipe) {
+    	window.location= '/api/searchs/images/'+recipe._source.checksum
+    }
+
     console.log($routeParams);
 
     if ($routeParams.queryString) {

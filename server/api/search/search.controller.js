@@ -27,13 +27,16 @@ exports.index = function(req, res) {
         type: 'recipe',
         body: {
             query: {
-                // match: {
-                //     content: 'e'
+                
+                //  "fuzzy_like_this" : {
+                //     "like_text" : req.query.text,
                 // }
                 // 
-                 "fuzzy_like_this" : {
-                    "like_text" : req.query.text,
-                }
+                 "match" : {
+                    "content": {
+                        "query" : req.query.text,
+                    }
+                 }
 
             }
         }

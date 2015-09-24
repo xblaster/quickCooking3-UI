@@ -4,6 +4,7 @@ angular.module('quickCooking3UiApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'ngRoute',
   'ui.bootstrap'
 ])
