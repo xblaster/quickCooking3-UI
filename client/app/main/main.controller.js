@@ -12,10 +12,11 @@ angular.module('quickCooking3UiApp')
     $scope.getStyleFor = function(recipe) {
     	var style= {
     		  //'background': 'url(/api/searchs/images/'+recipe._source.checksum+'?quality=l) no-repeat center fixed',
-    		  'background': 'white url(/api/searchs/images/'+recipe._source.checksum+'?quality=p) no-repeat center',
-  			  '-webkit-background-size': 'contain',
-  				'background-size': 'contain',
-  				'min-height': '30em'
+              'background': 'white url(/api/searchs/images/'+recipe._source.checksum+'?quality=p) no-repeat center',    //
+    		  //'background': 'white url(http://lorempixel.com/200/400/)',
+              'background-repeat':'no-repeat',
+              'background-size': 'cover'
+  			  
     	};
 
     	return style;
@@ -23,7 +24,8 @@ angular.module('quickCooking3UiApp')
 
     $scope.getBigDetailsFor = function(recipe) {
     	var style= $scope.getStyleFor(recipe);
-    	style['background'] = 'url(/api/searchs/images/'+recipe._source.checksum+'?quality=l) no-repeat center';
+    	//style['background'] = 'url(http://lorempixel.com/200/400/)';
+        style['background'] = 'url(/api/searchs/images/'+recipe._source.checksum+'?quality=l) no-repeat center';
 
     	return style;
     }

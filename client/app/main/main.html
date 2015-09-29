@@ -4,7 +4,7 @@
     <form ng-submit="search(searchString)">
       
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Pommes poires" ng-model="searchString" ng-disabled="loading">
+        <input type="text" class="form-control" placeholder="Tapez ici votre recherche" ng-model="searchString" ng-disabled="loading">
         <span class="input-group-btn">
           <button class="btn btn-primary" type="submit"  ng-disabled="loading">Recherche </button>
         </span>
@@ -20,8 +20,8 @@
       <h2>{{recipe._source.checksum}}</h2>
       -->          <!-- <img ng-src="/api/searchs/images/{{recipe._source.checksum}}?quality=l"/> -->
       
-      <!-- {{recipe._source.content}}
-      {{recipe}} -->
+      <pre>{{recipe._source.content}}</pre>
+      <!-- {{recipe}} -->
       
       
     </div>

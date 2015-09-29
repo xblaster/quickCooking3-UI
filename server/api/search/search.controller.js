@@ -26,17 +26,19 @@ exports.index = function(req, res) {
         index: 'recipes',
         type: 'recipe',
         body: {
+            "from" : 0, "size" : 25,
             query: {
                 
-                //  "fuzzy_like_this" : {
-                //     "like_text" : req.query.text,
-                // }
-                // 
-                 "match" : {
-                    "content": {
-                        "query" : req.query.text,
-                    }
-                 }
+                 "fuzzy_like_this" : {
+                    "fields" : ["content"],
+                    "like_text" : req.query.text,
+                }
+                
+                 // "match" : {
+                 //    "content": {
+                 //        "query" : req.query.text,
+                 //    }
+                 // }
 
             }
         }
