@@ -15,6 +15,7 @@ angular.module('quickCooking3UiApp')
               'background': 'white url(/api/searchs/images/'+recipe._source.checksum+'?quality=p) no-repeat center',    //
     		  //'background': 'white url(http://lorempixel.com/200/400/)',
               'background-repeat':'no-repeat',
+              'background-position': 'top',
               'background-size': 'cover'
   			  
     	};
