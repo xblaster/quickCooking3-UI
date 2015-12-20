@@ -14,8 +14,7 @@ exports.index = function(req, res) {
     console.log("launching searches");
 
     var client = new elasticsearch.Client({
-        host: host,
-        log: 'trace'
+        host: host
     });
 
 
