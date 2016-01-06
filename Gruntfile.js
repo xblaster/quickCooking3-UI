@@ -1,4 +1,5 @@
 // Generated on 2015-09-15 using generator-angular-fullstack 2.1.1
+/*eslint-env node */
 'use strict';
 
 module.exports = function (grunt) {
@@ -193,16 +194,16 @@ module.exports = function (grunt) {
     },
 
     // Debugging with node inspector
-    'node-inspector': {
+    /*'node-inspector': {
       custom: {
         options: {
           'web-host': 'localhost'
         }
       }
-    },
+    },*/
 
     // Use nodemon to run server in debug mode with an initial breakpoint
-    nodemon: {
+    /*nodemon: {
       debug: {
         script: 'server/app.js',
         options: {
@@ -224,7 +225,7 @@ module.exports = function (grunt) {
           }
         }
       }
-    },
+    },*/
 
     // Automatically inject Bower components into the app
     wiredep: {
@@ -420,10 +421,10 @@ module.exports = function (grunt) {
         'sass',
       ],
       debug: {
-        tasks: [
+        /*tasks: [
           'nodemon',
           'node-inspector'
-        ],
+        ],*/
         options: {
           logConcurrentOutput: true
         }
@@ -437,7 +438,7 @@ module.exports = function (grunt) {
     },
 
     // Test settings
-    karma: {
+    /*karma: {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
@@ -448,10 +449,10 @@ module.exports = function (grunt) {
       options: {
         reporter: 'spec'
       },
-      src: ['server/**/*.spec.js']
-    },
+      src: ['server/**//*.spec.js']
+    },*/
 
-    protractor: {
+   /* protractor: {
       options: {
         configFile: 'protractor.conf.js'
       },
@@ -462,7 +463,7 @@ module.exports = function (grunt) {
           }
         }
       }
-    },
+    },*/
 
     env: {
       test: {
@@ -685,10 +686,10 @@ module.exports = function (grunt) {
     'concat',
     'ngAnnotate',
     'copy:dist',
-  //  'cdnify',
+    'cdnify',
     'cssmin',
     'uglify',
- //   'rev',
+    'rev',
     'usemin'
   ]);
 

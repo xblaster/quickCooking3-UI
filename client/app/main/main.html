@@ -12,7 +12,7 @@
     </form>
   </div>
   <div class="recipe-container row">
-    <div ng-repeat="recipe in recipes track by $index" class="recipe circle-anim" ng-click="open(recipe)">
+    <div ng-repeat="recipe in recipes track by $index" class="recipe circle-anim" ng-click="open(recipe)" ng-if="recipes.length!=0">
       <div class="card" ng-style="getStyleFor(recipe)">
         <div class="bigdetails" ng-style="getBigDetailsFor(recipe)"></div>
       </div>
@@ -26,24 +26,23 @@
       
     </div>
 
-  <div class="card" ng-if="loading" class="circle-anim">
+  <div class="card zoomInLeft animated" ng-if="loading">
       <div class="jumbotron">
-        <p>Chargement...
+        <p><i class="fa fa-circle-o-notch fa-spin"></i> Chargement...
         </p></div>
       </div>
     </div>
 
-    <div class="card" ng-if="!searchString">
+    <div class="card animated fadeInUp" ng-if="!searchString">
       <div class="jumbotron">
         <p>Que souhaitez vous rechercher aujourd'hui ? :)
         </p></div>
       </div>
     </div>
-  </div>
-  <footer class="footer">
+  <!--<footer class="footer">
     <div class="container">
-      <p>Quick cooking v3.0 |
+      <p>Quick cooking v3.2 |
         <a href="https://github.com/xblaster">@xblaster</a> |
         
       </div>
-    </footer>
+    </footer>-->

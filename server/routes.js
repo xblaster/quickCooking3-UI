@@ -2,6 +2,7 @@
  * Main application routes
  */
 
+/*eslint-env node */
 'use strict';
 
 var errors = require('./components/errors');

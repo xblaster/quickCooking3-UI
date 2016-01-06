@@ -32,7 +32,8 @@ angular.module('quickCooking3UiApp')
     }
 
     $scope.open = function(recipe) {
-    	window.location= '/api/searchs/images/'+recipe._source.checksum
+    	//window.location= '/api/searchs/images/'+recipe._source.checksum
+    	$location.path('/view/'+recipe._source.checksum);
     }
 
     console.log($routeParams);

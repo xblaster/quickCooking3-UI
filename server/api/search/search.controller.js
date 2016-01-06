@@ -1,3 +1,4 @@
+/*eslint-env node */
 'use strict';
 
 var _ = require('lodash');
@@ -69,9 +70,21 @@ var quality = {
     l: {
         width: 800
     }
-}
+};
 
 exports.getImage = function(req, res) {
+	//console.log(req.query)
+    var imageFile;
+
+    if (!req.query.quality) {
+        imageFile = imageVolume + "/" + req.params.name + ".jpg";
+    } else {
+        imageFile = imageVolume + "/" + req.query.quality + "/" + req.params.name + ".jpg";
+    }
+    res.sendFile(imageFile);
+};
+
+exports.getImage2 = function(req, res) {
     console.log(req.query);
 
     var imageFile;
@@ -82,38 +95,5 @@ exports.getImage = function(req, res) {
         imageFile = imageVolume + "/" + req.query.quality + "/" + req.params.name + ".jpg";
     }
 
-    if (fs.existsSync(imageFile)) { return res.sendFile(imageFile); }
-
-    //create dir if not exist
-    if (!fs.existsSync(imageVolume + "/" + req.query.quality)){
-           fs.mkdirSync(imageVolume + "/" + req.query.quality);
-    }
-
-    try {
-
-    im.resize({
-        srcPath: imageVolume + "/" + req.params.name + ".jpg",
-        dstPath: imageFile,
-        width: quality[req.query.quality].width
-    }, function(err, stdout, stderr) {
-        if (err) throw err;
-        return res.sendFile(imageFile);0
-    });
-    }
-
-    catch (e) {
-      console.log("error !");
-      console.log(e);
-      return res.json("error !")
-    }
-
-
-
-
-
-
-
-    
-    //return res.json(req.params.name);
-
+    if (fs.existsSync(imageFile)) { res.sendFile(imageFile); } 
 };

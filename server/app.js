@@ -2,6 +2,7 @@
  * Main application file
  */
 
+/*eslint-env node */
 'use strict';
 
 // Set default node environment to development
