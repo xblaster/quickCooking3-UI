@@ -7,7 +7,7 @@ angular.module('quickCooking3UiApp')
     $scope.getStyleFor = function() {
     	var style= {
     		  //'background': 'url(/api/searchs/images/'+recipe._source.checksum+'?quality=l) no-repeat center fixed',
-              'background': 'white url(/api/searchs/images/'+$scope.checksum+'?quality=p) no-repeat center',    //
+              'background': 'white url(/api/searchs/images/'+$scope.checksum+'?quality=l) no-repeat center',    //
               'background-repeat':'no-repeat',
               'background-position': 'top',
               'background-size': 'contain',
@@ -20,7 +20,7 @@ angular.module('quickCooking3UiApp')
 
     $scope.getBigDetailsFor = function() {
     	var style= $scope.getStyleFor();
-        style['background'] = 'url(/api/searchs/images/'+$scope.checksum+'?quality=l) no-repeat center';
+        style['background'] = 'url(/api/searchs/images/'+$scope.checksum+') no-repeat center';
 
     	return style;
     }
