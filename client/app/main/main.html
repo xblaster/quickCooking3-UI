@@ -12,9 +12,13 @@
     </form>
   </div>
   <div class="recipe-container row">
-    <div ng-repeat="recipe in recipes track by $index" class="recipe circle-anim" ng-click="open(recipe)" ng-if="recipes.length!=0">
-      <div class="card" ng-style="getStyleFor(recipe)">
+    <div ng-repeat="recipe in recipes track by $index" class="recipe circle-anim"  ng-if="recipes.length!=0">
+
+      <div class="card" ng-style="getStyleFor(recipe)" ng-click="open(recipe)">
         <div class="bigdetails" ng-style="getBigDetailsFor(recipe)"></div>
+      </div>
+       <div class="icons" ng-if="recipe._source.book">
+        <a ng-click="goToBook(recipe)" class="btn btn-lg btn-default"><i class="fa fa-book"></i></a>
       </div>
       <!--           <h1>{{recipe._id}}</h1>
       <h2>{{recipe._source.checksum}}</h2>

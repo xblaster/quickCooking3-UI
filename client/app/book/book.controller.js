@@ -1,13 +1,9 @@
 'use strict';
 
 angular.module('quickCooking3UiApp')
-  .controller('MainCtrl', function ($scope, $http, recipes, $routeParams, $location) {
-
-    $scope.search = function(queryString) {
-
-    	console.log("search "+queryString)
-		$location.search("queryString="+queryString) ;
-    }
+  .controller('BookCtrl', function ($scope, $routeParams, recipes, $location) {
+    $scope.message = 'Hello';
+    $scope.bookName = $routeParams.name;
 
     $scope.getStyleFor = function(recipe) {
     	var style= {
@@ -36,17 +32,11 @@ angular.module('quickCooking3UiApp')
     	$location.path('/view/'+recipe._source.checksum);
     }
 
-    $scope.goToBook = function(recipe) {
-        //window.location= '/api/searchs/images/'+recipe._source.checksum
-        $location.path('/book/'+recipe._source.bookName);
-    }
 
-    console.log($routeParams);
-
-    if ($routeParams.queryString) {
+ 	if ($routeParams.name) {
         $scope.loading = true;
-    	$scope.searchString = $routeParams.queryString;
-		var res = recipes.search($routeParams.queryString);
+    	$scope.searchString = $routeParams.name;
+		var res = recipes.book($routeParams.name);
 
         //console.log(res)
         res.then(function(result) {
@@ -55,8 +45,5 @@ angular.module('quickCooking3UiApp')
     		$scope.recipes = result.data;
     	});
     }
-
-
-    
 
   });

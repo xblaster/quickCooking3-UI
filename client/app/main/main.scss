@@ -38,6 +38,8 @@
     flex-wrap: wrap;
 }
 
+
+
 .recipe {
     width: 50%;
    
@@ -57,6 +59,12 @@
         right: 0px;
         left: 0px;
        
+    }
+
+    .icons {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
     }
 }
 
@@ -104,7 +112,7 @@ body {
 }
 
 .circle-anim.ng-enter-stagger {
-  -webkit-animation-delay:0.08s;
+  -webkit-animation-delay:0.08s; 
   animation-delay:0.08s;
   -webkit-animation-duration: 0s;
   animation-duration: 0s;

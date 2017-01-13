@@ -18,10 +18,6 @@ exports.index = function(req, res) {
         host: host
     });
 
-
-
-    //res.json([]);
-    //return client.search
     client.search({
         index: 'recipes',
         type: 'recipe',
@@ -32,6 +28,44 @@ exports.index = function(req, res) {
                  "fuzzy_like_this" : {
                     "fields" : ["content"],
                     "like_text" : req.query.text,
+                }
+                
+                 // "match" : {
+                 //    "content": {
+                 //        "query" : req.query.text,
+                 //    }
+                 // }
+
+            }
+        }
+    }).then(function(resp) {
+        //console.log(resp);
+        var hits = resp.hits.hits;
+        res.json(hits);
+    }, function(err) {
+        console.trace(err.message);
+        res.json(err.message);
+    });
+};
+
+// Get list of searchs
+exports.book = function(req, res) {
+
+    console.log("launching searches");
+
+    var client = new elasticsearch.Client({
+        host: host
+    });
+
+    client.search({
+        index: 'recipes',
+        type: 'recipe',
+        body: {
+            "from" : 0, 
+            query: {
+                
+                 "term" : {
+                    "bookName": req.query.name
                 }
                 
                  // "match" : {

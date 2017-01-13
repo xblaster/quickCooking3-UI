@@ -6,7 +6,12 @@ angular.module('quickCooking3UiApp')
             return $http.get('/api/searchs', {params: { text: text}});
         }
 
+        function book(name) {
+            return $http.get('/api/searchs/book', {params: { name: name}});
+        }
+
         return {
-            search: search
+            search: search,
+            book: book
         }
     });
