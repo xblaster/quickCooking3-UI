@@ -42,7 +42,7 @@ angular.module('quickCooking3UiApp')
         res.then(function(result) {
             console.log(result);
             $scope.loading = false;
-    		$scope.recipes = result.data;
+    		$scope.recipes = _.sortBy(result.data, function(elt) { console.log(elt); return elt._source.page}) ;
     	});
     }
 

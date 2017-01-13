@@ -28,6 +28,7 @@ exports.index = function(req, res) {
                  "fuzzy_like_this" : {
                     "fields" : ["content"],
                     "like_text" : req.query.text,
+                    "fuzziness": 1
                 }
                 
                  // "match" : {
@@ -57,6 +58,8 @@ exports.book = function(req, res) {
         host: host
     });
 
+    console.log(req.query.name);
+
     client.search({
         index: 'recipes',
         type: 'recipe',
@@ -64,9 +67,14 @@ exports.book = function(req, res) {
             "from" : 0, 
             query: {
                 
-                 "term" : {
-                    "bookName": req.query.name
+                "fuzzy_like_this" : {
+                    "fields" : ["bookName"],
+                    "like_text" : req.query.name
                 }
+
+                /* "terms" : {
+                    "bookName": req.query.name
+                }*/
                 
                  // "match" : {
                  //    "content": {
