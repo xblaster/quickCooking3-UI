@@ -17,7 +17,8 @@
     "lodash": "~3.10.1",
     "method-override": "~2.3.5",
     "morgan": "~1.6.1",
-    "serve-favicon": "~2.3.0"
+    "serve-favicon": "~2.3.0",
+    "snyk": "^1.317.0"
   },
   "devDependencies": {
     "grunt": "~0.4.4",
@@ -82,7 +83,10 @@
   "scripts": {
     "start": "node server/app.js",
     "test": "grunt test",
-    "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
+    "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
-  "private": true
+  "private": true,
+  "snyk": true
 }
