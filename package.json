@@ -9,7 +9,7 @@
     "connect-mongo": "^0.8.1",
     "cookie-parser": "~1.4.0",
     "ejs": "~2.5.3",
-    "elasticsearch": "^10.0.1",
+    "elasticsearch": "^16.7.3",
     "errorhandler": "~1.4.2",
     "express": "^4",
     "express-session": "~1.12.1",
